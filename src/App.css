@@ -46,15 +46,16 @@ a:hover {
 .logo-container {
   background-color: #001529;
   display: flex;
-  padding: 20px;
+  padding: 15px;
   align-items: center;
   width: 100%;
 }
 .logo {
-  margin: 0 0 0 15px;
+  margin: 0 0 0 10px;
 }
 .logo a {
   color: white;
+  margin-bottom: 0px;
 }
 .menu-control-container {
   display: none !important;
