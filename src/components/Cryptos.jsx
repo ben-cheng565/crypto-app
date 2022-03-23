@@ -14,15 +14,13 @@ export default function Cryptos({ simplified }) {
   if (isFetching) {
     return "Loading...";
   }
-
   return (
     <>
       <Row gutter={[32, 32]} className="crypto-card-container">
         {cryptos?.map((crypto) => (
-          <Col key={crypto.id} xs={24} sm={12} lg={6} className="crypto-card">
-            <Link to={`/crypto/${crypto.id}`}>
+          <Col key={crypto.uuid} xs={24} sm={12} lg={6} className="crypto-card">
+            <Link to={`/crypto/${crypto.uuid}`}>
               <Card
-                key={crypto.id}
                 title={`${crypto.rank}. ${crypto.name}`}
                 extra={<img className="crypto-image" src={crypto.iconUrl} />}
                 hoverable
