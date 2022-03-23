@@ -41,6 +41,15 @@ export default function Homepage() {
           />
         </Col>
       </Row>
+      <div className="home-heading-container">
+        <Title level={3} className="home-title">
+          Top 10 Cryptos
+        </Title>
+        <Title level={5} className="show-more">
+          <Link to="/cryptos">Show more</Link>
+        </Title>
+      </div>
+      <Cryptos simplified />
     </>
   );
 }
