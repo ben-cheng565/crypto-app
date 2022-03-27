@@ -47,7 +47,7 @@ a:hover {
   background-color: #001529;
   display: flex;
   padding: 15px;
-  align-items: center;
+  /* align-items: center; */
   width: 100%;
 }
 .logo {
@@ -55,7 +55,6 @@ a:hover {
 }
 .logo a {
   color: white;
-  margin-bottom: 0px;
 }
 .menu-control-container {
   display: none !important;
@@ -288,7 +287,9 @@ a:hover {
 }
 
 .select-news {
-  width: 180px;
+  display: flex !important;
+  margin: 20px auto 10px auto !important;
+  width: 50%;
 }
 .news-card {
   min-height: 300px !important;
@@ -353,7 +354,7 @@ a:hover {
 }
 .search-crypto {
   margin: 20px auto 30px auto;
-  width: 250px;
+  width: 50%;
 }
 .crypto-card-container {
   min-height: 65vh !important;
