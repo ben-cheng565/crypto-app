@@ -16,7 +16,7 @@ export default function Navbar() {
       <div className="logo-container">
         <Avatar src={icon} size="large" />
 
-        <Typography.Title level={3} className="logo">
+        <Typography.Title level={2} className="logo">
           <Link to="/">Cryptor</Link>
         </Typography.Title>
       </div>
