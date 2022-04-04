@@ -1,8 +1,26 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
-import { Row, Col, Typography } from "antd";
+import { Row, Typography } from "antd";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 
-const { Title } = Typography;
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 export default function LineChart({ coinHistory, currentPrice, coinName }) {
   const coinPrice = [];
@@ -22,40 +40,21 @@ export default function LineChart({ coinHistory, currentPrice, coinName }) {
         label: "Price in USD",
         data: coinPrice,
         fill: false,
-        backgroundColor: "#ffc107",
-        borderColor: "#4bc0c0",
+        backgroundColor: "#0071bd",
+        borderColor: "#0071bd",
       },
     ],
   };
-
-  //   const options = {
-  //     scales: {
-  //       yAxes: [
-  //         {
-  //           ticks: {
-  //             beginAtZero: true,
-  //           },
-  //         },
-  //       ],
-  //     },
-  //   };
+  const options = { scales: { y: { ticks: { beginAtZero: true } } } };
 
   return (
     <>
       <Row className="chart-header">
-        <Title level={2} className="chart-title">
+        <Typography.Title level={3} className="chart-title">
           {coinName} Price Chart
-        </Title>
-        <Col className="price-container">
-          <Title level={5} className="price-change">
-            {coinHistory?.data?.change}%
-          </Title>
-          <Title level={5} className="current-price">
-            Current {coinName} Price: $ {currentPrice}
-          </Title>
-        </Col>
+        </Typography.Title>
       </Row>
-      <Line data={data} />
+      <Line data={data} options={options} />
     </>
   );
 }
