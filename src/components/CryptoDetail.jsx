@@ -20,6 +20,7 @@ import {
   useGetCryptoHistoryQuery,
 } from "../services/cryptoApi";
 import LineChart from "./LineChart";
+import CoinStat from "./widgets/CoinStat";
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -122,26 +123,14 @@ export default function CryptoDetail() {
 
         <Col className="stats-container">
           <Col className="coin-value-statistics">
-            {stats.map(({ icon, title, value }) => (
-              <Col className="coin-stats">
-                <Col className="coin-stats-name">
-                  <Text>{icon}</Text>
-                  <Text>{title}</Text>
-                </Col>
-                <Text className="stats">{value}</Text>
-              </Col>
+            {stats.map((stat) => (
+              <CoinStat key={stat.title} {...stat} />
             ))}
           </Col>
 
           <Col className="coin-value-statistics">
-            {genericStats.map(({ icon, title, value }) => (
-              <Col className="coin-stats">
-                <Col className="coin-stats-name">
-                  <Text>{icon}</Text>
-                  <Text>{title}</Text>
-                </Col>
-                <Text className="stats">{value}</Text>
-              </Col>
+            {genericStats.map((stat) => (
+              <CoinStat key={stat.title} {...stat} />
             ))}
           </Col>
         </Col>
