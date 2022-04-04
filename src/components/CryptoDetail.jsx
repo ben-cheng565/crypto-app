@@ -61,7 +61,7 @@ export default function CryptoDetail() {
       icon: <DollarCircleOutlined />,
     },
     {
-      title: "All-time-high(daily avg.)",
+      title: "All-time-high",
       value: `$ ${
         cryptoDetails?.allTimeHigh?.price &&
         millify(cryptoDetails?.allTimeHigh?.price)
@@ -122,13 +122,13 @@ export default function CryptoDetail() {
         </Row>
 
         <Col className="stats-container">
-          <Col className="coin-value-statistics">
+          <Col>
             {stats.map((stat) => (
               <CoinStat key={stat.title} {...stat} />
             ))}
           </Col>
 
-          <Col className="coin-value-statistics">
+          <Col>
             {genericStats.map((stat) => (
               <CoinStat key={stat.title} {...stat} />
             ))}
@@ -148,6 +148,7 @@ export default function CryptoDetail() {
             </Title>
             {HTMLReactParser(cryptoDetails?.description)}
           </Row>
+
           <Col className="coin-links">
             <Title level={3} className="coin-details-heading">
               {cryptoDetails?.name} Links
