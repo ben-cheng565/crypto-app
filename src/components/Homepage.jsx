@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 import { Typography, Row, Col, Statistic, Card } from "antd";
 
 import { useGetCryptosQuery } from "../services/cryptoApi";
-import { Cryptos, News } from "../components";
-import TotalStat from "./widgets/TotalStat";
+import { Cryptos, News, TotalStat } from ".";
 
 const { Title } = Typography;
 

@@ -141,8 +141,8 @@ a:hover {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border-bottom: 1px solid var(--border);
   padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
   gap: 10px;
 }
 
@@ -172,6 +172,10 @@ a:hover {
 }
 .coin-value-statistics {
   padding: 0 30px 0 30px;
+}
+
+.exchange-container {
+  margin-top: 20px;
 }
 
 .exchange-name-container {
@@ -215,8 +219,6 @@ a:hover {
 .coin-desc-link {
   display: flex;
   gap: 40px;
-  margin-top: 40px;
-  padding-top: 20px;
 }
 
 .coin-desc-link h2 {
