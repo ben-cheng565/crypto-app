@@ -121,19 +121,19 @@ export default function CryptoDetail() {
           </Title>
         </Row>
 
-        <Col className="stats-container">
-          <Col>
+        <Row className="stats-container">
+          <Col xs={24} sm={12} className="coin-value-statistics">
             {stats.map((stat) => (
               <CoinStat key={stat.title} {...stat} />
             ))}
           </Col>
 
-          <Col>
+          <Col xs={24} sm={12} className="coin-value-statistics">
             {genericStats.map((stat) => (
               <CoinStat key={stat.title} {...stat} />
             ))}
           </Col>
-        </Col>
+        </Row>
 
         <LineChart
           coinHistory={coinHistory}
