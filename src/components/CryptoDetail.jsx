@@ -1,29 +1,17 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { millify } from "millify";
-import { Row, Col, Typography, Select } from "antd";
-import HTMLReactParser from "html-react-parser";
-import {
-  MoneyCollectOutlined,
-  DollarCircleOutlined,
-  FundOutlined,
-  ExclamationCircleOutlined,
-  StopOutlined,
-  TrophyOutlined,
-  CheckOutlined,
-  NumberOutlined,
-  ThunderboltOutlined,
-} from "@ant-design/icons";
+import { Row, Col, Typography, Select, Tabs } from "antd";
 
 import {
   useGetCryptoDetailsQuery,
   useGetCryptoHistoryQuery,
 } from "../services/cryptoApi";
-import LineChart from "./LineChart";
-import CoinStat from "./widgets/CoinStat";
 
-const { Title, Text } = Typography;
+import { Exchanges, WikiInfo, Overview } from ".";
+
+const { Title } = Typography;
 const { Option } = Select;
+const { TabPane } = Tabs;
 
 export default function CryptoDetail() {
   const { coinId } = useParams();
@@ -39,74 +27,6 @@ export default function CryptoDetail() {
 
   const time = ["3h", "24h", "7d", "30d", "1y", "3m", "3y", "5y"];
 
-  const stats = [
-    {
-      title: "Price to USD",
-      value: `$ ${cryptoDetails?.price && millify(cryptoDetails?.price)}`,
-      icon: <DollarCircleOutlined />,
-    },
-    { title: "Rank", value: cryptoDetails?.rank, icon: <NumberOutlined /> },
-    {
-      title: "24h Volume",
-      value: `$ ${
-        cryptoDetails["24hVolume"] && millify(cryptoDetails["24hVolume"])
-      }`,
-      icon: <ThunderboltOutlined />,
-    },
-    {
-      title: "Market Cap",
-      value: `$ ${
-        cryptoDetails?.marketCap && millify(cryptoDetails?.marketCap)
-      }`,
-      icon: <DollarCircleOutlined />,
-    },
-    {
-      title: "All-time-high(daily avg.)",
-      value: `$ ${
-        cryptoDetails?.allTimeHigh?.price &&
-        millify(cryptoDetails?.allTimeHigh?.price)
-      }`,
-      icon: <TrophyOutlined />,
-    },
-  ];
-
-  const genericStats = [
-    {
-      title: "Number Of Markets",
-      value: cryptoDetails?.numberOfMarkets,
-      icon: <FundOutlined />,
-    },
-    {
-      title: "Number Of Exchanges",
-      value: cryptoDetails?.numberOfExchanges,
-      icon: <MoneyCollectOutlined />,
-    },
-    {
-      title: "Aprroved Supply",
-      value: cryptoDetails?.supply?.confirmed ? (
-        <CheckOutlined />
-      ) : (
-        <StopOutlined />
-      ),
-      icon: <ExclamationCircleOutlined />,
-    },
-    {
-      title: "Total Supply",
-      value: `$ ${
-        cryptoDetails?.supply?.total && millify(cryptoDetails?.supply?.total)
-      }`,
-      icon: <ExclamationCircleOutlined />,
-    },
-    {
-      title: "Circulating Supply",
-      value: `$ ${
-        cryptoDetails?.supply?.circulating &&
-        millify(cryptoDetails?.supply?.circulating)
-      }`,
-      icon: <ExclamationCircleOutlined />,
-    },
-  ];
-
   return (
     <>
       <Col className="coin-detail-container">
@@ -121,49 +41,17 @@ export default function CryptoDetail() {
           </Title>
         </Row>
 
-        <Col className="stats-container">
-          <Col className="coin-value-statistics">
-            {stats.map((stat) => (
-              <CoinStat key={stat.title} {...stat} />
-            ))}
-          </Col>
-
-          <Col className="coin-value-statistics">
-            {genericStats.map((stat) => (
-              <CoinStat key={stat.title} {...stat} />
-            ))}
-          </Col>
-        </Col>
-
-        <LineChart
-          coinHistory={coinHistory}
-          currentPrice={millify(cryptoDetails.price)}
-          coinName={cryptoDetails.name}
-        />
-
-        <Col className="coin-desc-link">
-          <Row className="coin-desc">
-            <Title level={3} className="coin-details-heading">
-              What is {cryptoDetails?.name}?
-            </Title>
-            {HTMLReactParser(cryptoDetails?.description)}
-          </Row>
-          <Col className="coin-links">
-            <Title level={3} className="coin-details-heading">
-              {cryptoDetails?.name} Links
-            </Title>
-            {cryptoDetails?.links.map((link) => (
-              <Row className="coin-link" key={link.id}>
-                <Title className="link-name" level={5}>
-                  {link.type}
-                </Title>
-                <a href={link.url} target="_blank" rel="noreferrer">
-                  {link.name}
-                </a>
-              </Row>
-            ))}
-          </Col>
-        </Col>
+        <Tabs defaultActiveKey="1">
+          <TabPane tab="Overview" key="1">
+            <Overview cryptoDetails={cryptoDetails} coinHistory={coinHistory} />
+          </TabPane>
+          <TabPane tab="Exchanges" key="2">
+            <Exchanges coinId={coinId} />
+          </TabPane>
+          <TabPane tab="Crypto Wiki" key="3">
+            <WikiInfo cryptoDetails={cryptoDetails} />
+          </TabPane>
+        </Tabs>
       </Col>
     </>
   );
