@@ -4,6 +4,7 @@ import millify from "millify";
 import { Row, Col, Card, Input } from "antd";
 
 import { useGetCryptosQuery } from "../services/cryptoApi";
+import Loader from "./Loader";
 
 export default function Cryptos({ simplified }) {
   const count = simplified ? 10 : 100;
@@ -19,9 +20,8 @@ export default function Cryptos({ simplified }) {
     setCryptos(filteredData);
   }, [cryptosList, searchTerm]);
 
-  if (isFetching) {
-    return "Loading...";
-  }
+  if (isFetching) return <Loader />;
+
   return (
     <>
       {!simplified && (
