@@ -1,17 +1,15 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Row, Col, Typography, Select, Tabs } from "antd";
+import { Row, Col, Typography, Tabs } from "antd";
 
 import {
   useGetCryptoDetailsQuery,
   useGetCryptoHistoryQuery,
 } from "../services/cryptoApi";
-
 import { Exchanges, WikiInfo, Overview } from ".";
 import Loader from "./Loader";
 
 const { Title } = Typography;
-const { Option } = Select;
 const { TabPane } = Tabs;
 
 export default function CryptoDetail() {
@@ -23,11 +21,9 @@ export default function CryptoDetail() {
     timePeriod,
   });
 
-  if (isLoading) return "Loading...";
-  const cryptoDetails = data?.data?.coin;
   if (isLoading) return <Loader />;
 
-  const time = ["3h", "24h", "7d", "30d", "1y", "3m", "3y", "5y"];
+  const cryptoDetails = data?.data?.coin;
 
   return (
     <>
