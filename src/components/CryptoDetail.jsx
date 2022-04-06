@@ -8,6 +8,7 @@ import {
 } from "../services/cryptoApi";
 
 import { Exchanges, WikiInfo, Overview } from ".";
+import Loader from "./Loader";
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -24,6 +25,7 @@ export default function CryptoDetail() {
 
   if (isLoading) return "Loading...";
   const cryptoDetails = data?.data?.coin;
+  if (isLoading) return <Loader />;
 
   const time = ["3h", "24h", "7d", "30d", "1y", "3m", "3y", "5y"];
 

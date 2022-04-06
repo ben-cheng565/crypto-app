@@ -3,11 +3,12 @@ import { Row, Table, Typography } from "antd";
 import { millify } from "millify";
 
 import { useGetCryptoExchangesQuery } from "../../services/cryptoApi";
+import Loader from "../Loader";
 
 export default function Exchanges({ coinId }) {
   const { data, isLoading } = useGetCryptoExchangesQuery(coinId);
 
-  if (isLoading) return "Loading...";
+  if (isLoading) return <Loader />;
 
   const columns = [
     {

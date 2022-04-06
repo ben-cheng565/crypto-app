@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Select, Typography, Row, Col, Avatar, Card } from "antd";
+import moment from "moment";
 
 import { useGetNewsQuery } from "../services/newsApi";
 import { useGetCryptosQuery } from "../services/cryptoApi";
-import moment from "moment";
+import Loader from "./Loader";
 
 const { Text, Title } = Typography;
 const { Option } = Select;
@@ -11,11 +12,13 @@ const { Option } = Select;
 export default function News({ simplified }) {
   const count = simplified ? 6 : 12;
   const [category, setCategory] = useState("Cryptocurrency");
-  const { data: news } = useGetNewsQuery({
+  const { data: news, isFetching } = useGetNewsQuery({
     category: category,
     count: count,
   });
   const { data } = useGetCryptosQuery(100);
+
+  if (isFetching) return <Loader />;
 
   return (
     <Row gutter={[24, 24]}>
