@@ -21,6 +21,11 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.jpe?g|png$/,
+        exclude: /node_modules/,
+        use: ["url-loader", "file-loader"],
+      },
     ],
   },
   plugins: [
