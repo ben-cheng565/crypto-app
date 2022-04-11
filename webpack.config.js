@@ -7,7 +7,7 @@ module.exports = {
     path: path.resolve(__dirname, "build"),
   },
   resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx"],
+    extensions: [".js", ".jsx", "scss", "css"],
   },
   module: {
     rules: [
@@ -25,6 +25,10 @@ module.exports = {
         test: /\.jpe?g|png$/,
         exclude: /node_modules/,
         use: ["url-loader", "file-loader"],
+      },
+      {
+        test: /\.s?css$/,
+        use: ["style-loader", "css-loader"],
       },
     ],
   },
