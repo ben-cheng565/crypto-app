@@ -2,6 +2,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
 module.exports = {
+  mode: "development",
   entry: path.join(__dirname, "src", "index.js"),
   output: {
     path: path.resolve(__dirname, "build"),
@@ -12,7 +13,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
@@ -24,7 +25,7 @@ module.exports = {
       {
         test: /\.jpe?g|png$/,
         exclude: /node_modules/,
-        use: ["url-loader", "file-loader"],
+        type: "asset/resource",
       },
       {
         test: /\.s?css$/,
@@ -37,4 +38,15 @@ module.exports = {
       template: path.join(__dirname, "public", "index.html"),
     }),
   ],
+  devServer: {
+    proxy: {
+      // proxy URLs to backend development server
+      "/api": "http://localhost:3000",
+    },
+    static: path.join(__dirname, "public"), // boolean | string | array | object, static file location
+    compress: true, // enable gzip compression
+    historyApiFallback: true, // true for index.html upon 404, object for multiple paths
+    hot: true, // hot module replacement. Depends on HotModuleReplacementPlugin
+    https: false, // true for self-signed, object for cert authority
+  },
 };
