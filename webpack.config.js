@@ -6,6 +6,7 @@ module.exports = {
   entry: path.join(__dirname, "src", "index.js"),
   output: {
     path: path.resolve(__dirname, "build"),
+    filename: "bundled.js",
   },
   resolve: {
     extensions: [".js", ".jsx", "scss", "css"],
@@ -43,10 +44,10 @@ module.exports = {
       // proxy URLs to backend development server
       "/api": "http://localhost:3000",
     },
-    static: path.join(__dirname, "public"), // boolean | string | array | object, static file location
-    compress: true, // enable gzip compression
-    historyApiFallback: true, // true for index.html upon 404, object for multiple paths
-    hot: true, // hot module replacement. Depends on HotModuleReplacementPlugin
-    https: false, // true for self-signed, object for cert authority
+    static: path.join(__dirname, "public"),
+    compress: true,
+    historyApiFallback: true,
+    hot: true,
+    https: false,
   },
 };
