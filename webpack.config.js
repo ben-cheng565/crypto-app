@@ -1,8 +1,9 @@
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   entry: path.join(__dirname, "src", "index.js"),
   output: {
     path: path.resolve(__dirname, "build"),
@@ -40,14 +41,8 @@ module.exports = {
     }),
   ],
   devServer: {
-    proxy: {
-      // proxy URLs to backend development server
-      "/api": "http://localhost:3000",
-    },
     static: path.join(__dirname, "public"),
     compress: true,
-    historyApiFallback: true,
     hot: true,
-    https: false,
   },
 };
