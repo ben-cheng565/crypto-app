@@ -43,6 +43,7 @@ module.exports = {
   devServer: {
     static: path.join(__dirname, "public"),
     compress: true,
+    open: true,
     hot: true,
   },
 };
