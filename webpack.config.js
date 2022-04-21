@@ -1,9 +1,9 @@
 const webpack = require("webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  mode: "production",
+  mode: "development",
   entry: path.join(__dirname, "src", "index.js"),
   output: {
     path: path.resolve(__dirname, "build"),
@@ -25,12 +25,11 @@ module.exports = {
         },
       },
       {
-        test: /\.jpe?g|png$/,
-        exclude: /node_modules/,
-        type: "asset/resource",
+        test: /\.(png|jpe?g|gif)$/i,
+        use: ["file-loader"],
       },
       {
-        test: /\.s?css$/,
+        test: /\.s?css$/i,
         use: ["style-loader", "css-loader"],
       },
     ],
