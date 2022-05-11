@@ -62,5 +62,6 @@ export default function Navbar() {
         </Menu>
       )}
     </div>
+        style={{ flex: "auto" }}
   );
 }
