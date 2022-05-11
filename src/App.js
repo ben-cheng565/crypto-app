@@ -10,9 +10,7 @@ const { Header, Footer, Content } = Layout;
 export default function App() {
   return (
     <Layout>
-      <Header>
-        <Navbar />
-      </Header>
+      <Navbar />
 
       <Content className="main-container">
         <Routes>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Avatar, Typography, Button, Menu } from "antd";
+import { Avatar, Typography, Menu, Layout } from "antd";
 
 import icon from "../images/logo.png";
 import {
@@ -31,36 +31,30 @@ export default function Navbar() {
   }, [screenSize]);
 
   return (
-    <div className="nav-container">
+    <Layout.Header className="header">
       <div className="logo-container">
         <Avatar src={icon} size="large" />
-
-        <Typography.Title level={2} className="logo">
+        <Typography.Title level={3} className="logo">
           <Link to="/">Cryptor</Link>
         </Typography.Title>
-
-        <Button
-          type="link"
-          className="menu-control-container"
-          onClick={() => setMenuVisible(!menuVisible)}
-        >
-          <MenuOutlined />
-        </Button>
       </div>
 
-      {menuVisible && (
-        <Menu theme="dark">
-          <Menu.Item icon={<HomeOutlined />}>
-            <Link to="/">Home</Link>
-          </Menu.Item>
-          <Menu.Item icon={<FundOutlined />}>
-            <Link to="/cryptos">Cryptos</Link>
-          </Menu.Item>
-          <Menu.Item icon={<BulbOutlined />}>
-            <Link to="/news">News</Link>
-          </Menu.Item>
-        </Menu>
-      )}
-    </div>
+      <Menu
+        mode="horizontal"
+        theme="dark"
+        defaultSelectedKeys={["1"]}
+        style={{ flex: "auto" }}
+      >
+        <Menu.Item key="1" icon={<HomeOutlined />}>
+          <Link to="/">Home</Link>
+        </Menu.Item>
+        <Menu.Item key="2" icon={<FundOutlined />}>
+          <Link to="/cryptos">Cryptos</Link>
+        </Menu.Item>
+        <Menu.Item key="3" icon={<BulbOutlined />}>
+          <Link to="/news">News</Link>
+        </Menu.Item>
+      </Menu>
+    </Layout.Header>
   );
 }
