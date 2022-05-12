@@ -50,7 +50,7 @@ export default function Homepage() {
           Top 10 Cryptos
         </Title>
         <Title level={5} className="show-more">
-          <Link to="/cryptos">Show more</Link>
+          <Link to="/cryptos">More</Link>
         </Title>
       </div>
       <Cryptos simplified />
@@ -60,7 +60,7 @@ export default function Homepage() {
           Latest Crypto News
         </Title>
         <Title level={5} className="show-more">
-          <Link to="/news">Show more</Link>
+          <Link to="/news">More</Link>
         </Title>
       </div>
       <News simplified />

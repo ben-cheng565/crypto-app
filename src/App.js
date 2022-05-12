@@ -21,7 +21,7 @@ export default function App() {
         </Routes>
       </Content>
 
-      <Footer>
+      <Footer className="footer">
         <Typography.Text>Cryptor @2022 - All rights reserved</Typography.Text>
       </Footer>
     </Layout>
