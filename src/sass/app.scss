@@ -252,7 +252,7 @@ a:hover {
 
 .news {
   &-card {
-    min-height: 300px !important;
+    height: 350px !important;
 
     p {
       color: black;
@@ -395,11 +395,13 @@ a:hover {
     position: absolute;
     right: 0px;
   }
+
   .home-title {
     font-size: 1.4rem !important;
   }
+
   .show-more {
-    font-size: 1.3rem !important;
+    font-size: 0.8rem !important;
   }
 }
 
