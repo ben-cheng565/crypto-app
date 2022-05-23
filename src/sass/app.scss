@@ -260,6 +260,11 @@ a:hover {
     }
   }
 
+  &-container {
+    display: flex;
+    flex-direction: column;
+  }
+
   &-title {
     width: 70%;
   }
@@ -279,7 +284,9 @@ a:hover {
   &-container {
     display: flex;
     justify-content: space-between;
+    margin-bottom: auto;
   }
+
   &-name {
     margin-left: 10px;
   }
