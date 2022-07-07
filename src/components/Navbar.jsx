@@ -3,12 +3,7 @@ import { Link } from "react-router-dom";
 import { Avatar, Typography, Menu, Layout } from "antd";
 
 import icon from "../images/logo.png";
-import {
-  BulbOutlined,
-  FundOutlined,
-  HomeOutlined,
-  MenuOutlined,
-} from "@ant-design/icons";
+import { BulbOutlined, FundOutlined, HomeOutlined } from "@ant-design/icons";
 
 export default function Navbar() {
   const [menuVisible, setMenuVisible] = useState(true);

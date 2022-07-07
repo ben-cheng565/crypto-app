@@ -1,7 +1,7 @@
 import React from "react";
 import millify from "millify";
 import { Link } from "react-router-dom";
-import { Typography, Row, Col, Statistic, Card } from "antd";
+import { Typography, Row, Card } from "antd";
 
 import { useGetCryptosQuery } from "../services/cryptoApi";
 import { Cryptos, News, TotalStat } from ".";
