@@ -5,7 +5,7 @@ import { Layout, Typography } from "antd";
 import { Navbar, Homepage, Cryptos, CryptoDetail, News } from "./components";
 import "./sass/app.scss";
 
-const { Header, Footer, Content } = Layout;
+const { Footer, Content } = Layout;
 
 export default function App() {
   return (
