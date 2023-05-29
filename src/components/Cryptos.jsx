@@ -7,10 +7,12 @@ import { useGetCryptosQuery } from "../services/cryptoApi";
 import Loader from "./Loader";
 
 export default function Cryptos({ simplified }) {
-  const count = simplified ? 10 : 100;
-  const { data: cryptosList, isFetching } = useGetCryptosQuery(count);
   const [cryptos, setCryptos] = useState(cryptosList?.data?.coins);
   const [searchTerm, setSearchTerm] = useState("");
+
+  const { data: cryptosList, isFetching } = useGetCryptosQuery(count);
+
+  const count = simplified ? 10 : 100;
 
   useEffect(() => {
     const filteredData = cryptosList?.data?.coins.filter((coin) =>

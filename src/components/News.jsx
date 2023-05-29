@@ -10,13 +10,15 @@ const { Text, Title } = Typography;
 const { Option } = Select;
 
 export default function News({ simplified }) {
-  const count = simplified ? 6 : 12;
   const [category, setCategory] = useState("Cryptocurrency");
+
+  const { data } = useGetCryptosQuery(100);
   const { data: news, isFetching } = useGetNewsQuery({
     category: category,
     count: count,
   });
-  const { data } = useGetCryptosQuery(100);
+
+  const count = simplified ? 6 : 12;
 
   if (isFetching) return <Loader />;
 

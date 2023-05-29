@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Line } from "react-chartjs-2";
 import { Row, Typography } from "antd";
 import {
-  Chart as ChartJS,
+  Chart,
   CategoryScale,
   LinearScale,
   PointElement,
@@ -12,7 +12,7 @@ import {
   Legend,
 } from "chart.js";
 
-ChartJS.register(
+Chart.register(
   CategoryScale,
   LinearScale,
   PointElement,
@@ -23,29 +23,41 @@ ChartJS.register(
 );
 
 export default function LineChart({ coinHistory, currentPrice, coinName }) {
-  const coinPrice = [];
-  const coinTimestamps = [];
+  const data = useMemo(() => {
+    const coinPrice = [];
+    const coinTimestamps = [];
 
-  for (let i = 0; i < coinHistory?.data?.history?.length; i++) {
-    coinPrice.push(coinHistory?.data?.history[i]?.price);
-    coinTimestamps.push(
-      new Date(coinHistory?.data?.history[i]?.timestamp).toLocaleDateString()
-    );
-  }
+    coinHistory?.data?.history?.forEach((historyItem) => {
+      coinPrice.push(historyItem.price);
+      coinTimestamps.push(new Date(historyItem.timestamp).toLocaleDateString());
+    });
 
-  const data = {
-    labels: coinTimestamps,
-    datasets: [
-      {
-        label: "Price in USD",
-        data: coinPrice,
-        fill: false,
-        backgroundColor: "#0071bd",
-        borderColor: "#0071bd",
+    return {
+      labels: coinTimestamps,
+      datasets: [
+        {
+          label: "Price in USD",
+          data: coinPrice,
+          fill: false,
+          backgroundColor: "#0071bd",
+          borderColor: "#0071bd",
+        },
+      ],
+    };
+  }, [coinHistory]);
+
+  const options = useMemo(
+    () => ({
+      scales: {
+        y: {
+          ticks: {
+            beginAtZero: true,
+          },
+        },
       },
-    ],
-  };
-  const options = { scales: { y: { ticks: { beginAtZero: true } } } };
+    }),
+    []
+  );
 
   return (
     <>
