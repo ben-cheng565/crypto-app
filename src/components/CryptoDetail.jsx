@@ -15,6 +15,7 @@ const { TabPane } = Tabs;
 export default function CryptoDetail() {
   const { coinId } = useParams();
   const [timePeriod, setTimePeriod] = useState("7d");
+
   const { data, isLoading } = useGetCryptoDetailsQuery(coinId);
   const { data: coinHistory } = useGetCryptoHistoryQuery({
     coinId,

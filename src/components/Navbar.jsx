@@ -11,18 +11,15 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleResize = () => setScreenSize(window.innerWidth);
-    window.addEventListener("resize", handleResize);
 
+    window.addEventListener("resize", handleResize);
     handleResize();
+
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
-    if (screenSize < 768) {
-      setMenuVisible(false);
-    } else {
-      setMenuVisible(true);
-    }
+    setMenuVisible(screenSize < 768 ? false : true);
   }, [screenSize]);
 
   return (
