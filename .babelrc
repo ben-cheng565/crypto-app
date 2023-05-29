@@ -7,8 +7,7 @@
         "targets": {
           "browser": "last 2 versions"
         },
-        "modules": false,
-        "loop": false
+        "modules": false
       }
     ]
   ],
